@@ -60,7 +60,7 @@ pipeline {
                 // Package the built application into a .war file (optional)
                 bat '''
                 mkdir dist
-                xcopy /s /e /i /y /q web-build dist
+                xcopy /s /e /i /y /q _expo dist
                 cd dist
                 jar -cvf myapp.war *
                 '''
@@ -69,9 +69,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Deploy the web-build folder to Tomcat
+                // Deploy the _expo folder to Tomcat
                 bat '''
-                xcopy /s /e /i /y /q web-build "%TOMCAT_HOME%\\webapps\\your-app"
+                xcopy /s /e /i /y /q _expo "%TOMCAT_HOME%\\webapps\\your-app"
                 '''
             }
         }
