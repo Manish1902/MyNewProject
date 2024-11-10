@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         NODE_VERSION = 'NodeJS 20' // Specify Node version if needed
+        BRANCH_NAME = "${env.GIT_BRANCH}"
     }
 
     tools {
@@ -13,7 +14,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from Git
-                git branch: 'test', url: 'https://github.com/Manish1902/MyNewProject.git'
+                // git branch: 'test', url: 'https://github.com/Manish1902/MyNewProject.git'
+                 checkout scm
             }
         }
 
