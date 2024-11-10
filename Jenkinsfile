@@ -55,11 +55,11 @@ pipeline {
         stage('Test') {
             steps {
                 // Run tests with Jest and output results in JUnit format
-                bat 'npm test -- --ci --reporters=jest-junit'
+                bat 'npm test -- --ci'
             }
             post {
                 always {
-                    junit 'jest-junit.xml' // Replace with actual Jest output path
+                    junit 'test-results/junit.xml' // Replace with actual Jest output path
                 }
             }
         }

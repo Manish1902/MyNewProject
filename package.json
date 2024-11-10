@@ -12,10 +12,17 @@
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
-      "@testing-library/jest-native/extend-expect",
-      "@testing-library/jest-native/extend-expect",
-      "@testing-library/react-native"
-    
+      "@testing-library/jest-native/extend-expect"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "./test-results",
+          "outputName": "junit.xml"
+        }
+      ]
     ]
   },
   "dependencies": {
