@@ -38,6 +38,13 @@ pipeline {
             }
         }
 
+        stage('Install Test Dependencies') {
+            steps {
+                // Install jest-junit for test reporting
+                bat 'npm install --save-dev jest-junit'
+            }
+        }
+
         stage('Build') {
             steps {
                 // Run export command for web
