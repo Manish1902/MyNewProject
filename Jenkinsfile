@@ -51,7 +51,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Run export command for web
-                bat 'npx expo export'
+                bat 'npx expo export:web'
             }
         }
 
