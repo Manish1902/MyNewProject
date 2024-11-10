@@ -34,7 +34,7 @@ pipeline {
         stage('Install Web Dependencies') {
             steps {
                 // Install required dependencies for web support
-                bat 'npx expo install react-native-web react-dom @expo/metro-runtime'
+                bat 'npm install react-native-web@~0.19.10 react-dom@18.2.0 @expo/metro-runtime@~3.2.3'
             }
         }
 
