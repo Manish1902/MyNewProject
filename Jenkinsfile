@@ -20,28 +20,28 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install Node dependencies
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Install Expo CLI') {
             steps {
                 // Ensure Expo CLI is installed
-                sh 'npm install -g expo-cli'
+                bat 'npm install -g expo-cli'
             }
         }
 
         stage('Build') {
             steps {
                 // Run build command for web (you can customize for Android or iOS if needed)
-                sh 'npx expo build:web'
+                bat 'npx expo build:web'
             }
         }
 
         stage('Test') {
             steps {
                 // Run tests with Jest and output results in JUnit format
-                sh 'npm test -- --ci --reporters=jest-junit'
+                bat 'npm test -- --ci --reporters=jest-junit'
             }
             post {
                 always {
