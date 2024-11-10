@@ -50,8 +50,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Run export command for web
-                bat 'npx expo export:web'
+                // Run build command for web
+                bat 'npx expo build:web'
             }
         }
 
@@ -60,7 +60,7 @@ pipeline {
                 // Package the built application into a .war file
                 bat '''
                 mkdir dist
-                xcopy /s /e /i /y /q _expo dist
+                xcopy /s /e /i /y /q web-build dist
                 cd dist
                 jar -cvf myapp.war *
                 '''
