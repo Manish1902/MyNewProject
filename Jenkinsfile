@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = '14' // Specify Node version if needed
+        NODE_VERSION = 'NodeJS 14' // Specify Node version if needed
     }
 
     tools {
@@ -21,6 +21,13 @@ pipeline {
             steps {
                 // Install Node dependencies
                 sh 'npm install'
+            }
+        }
+
+        stage('Install Expo CLI') {
+            steps {
+                // Ensure Expo CLI is installed
+                sh 'npm install -g expo-cli'
             }
         }
 
