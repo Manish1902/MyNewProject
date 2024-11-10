@@ -4,7 +4,7 @@ pipeline {
     environment {
         NODE_VERSION = 'NodeJS 20' // Specify Node version if needed
         BRANCH_NAME = "${env.GIT_BRANCH}"
-        TOMCAT_HOME = 'C:\Program Files\Apache Software Foundation\Tomcat 11.0_Tomcat11_Temp' // Update with your Tomcat installation path
+        TOMCAT_HOME = 'C:\\Program Files\\Apache Software Foundation\\Tomcat 11.0_Tomcat11_Temp' // Update with your Tomcat installation path
     }
 
     tools {
