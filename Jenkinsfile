@@ -40,8 +40,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Run build command for web (you can customize for Android or iOS if needed)
-                bat 'npx expo export:web'
+                // Run export command for web
+                bat 'npx expo export'
             }
         }
 
