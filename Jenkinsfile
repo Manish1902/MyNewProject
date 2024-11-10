@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = 'NodeJS 20' // Specify Node version if neede
+        NODE_VERSION = 'NodeJS 20' // Specify Node version if needed
         BRANCH_NAME = "${env.GIT_BRANCH}"
+        TOMCAT_HOME = 'C:\Program Files\Apache Software Foundation\Tomcat 11.0_Tomcat11_Temp' // Update with your Tomcat installation path
     }
 
     tools {
@@ -54,6 +55,27 @@ pipeline {
             }
         }
 
+        stage('Package') {
+            steps {
+                // Package the built application into a .war file
+                bat '''
+                mkdir dist
+                xcopy /s /e /i /y /q _expo dist
+                cd dist
+                jar -cvf myapp.war *
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy the .war file to Tomcat
+                bat '''
+                copy dist\\myapp.war "%TOMCAT_HOME%\\webapps"
+                '''
+            }
+        }
+
         stage('Test') {
             steps {
                 // Run tests with Jest and output results in JUnit format
@@ -71,14 +93,6 @@ pipeline {
                 // Placeholder for security testing
                 echo 'Running security scans...'
                 // Add actual security scan commands or API calls here
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Deploy built artifacts to development environment
-                echo 'Deploying to server...'
-                // Commands for deployment to your environment
             }
         }
     }
