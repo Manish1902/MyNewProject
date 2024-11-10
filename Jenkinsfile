@@ -2,8 +2,13 @@ pipeline {
     agent any
 
     environment {
-        NODE_VERSION = 'NodeJS 20' // Specify Node version if need
-        BRANCH_NAME = "${env.GIT_BRANCH}"
+        // Load environment variables from .env file
+        script {
+            def props = readProperties file: '.env'
+            NODE_VERSION = props['NODE_VERSION']
+            BRANCH_NAME = props['GIT_BRANCH']
+            GIT_URL = props['GIT_URL']
+        }
     }
 
     tools {
@@ -14,8 +19,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from Git
-                // git branch: 'test', url: 'https://github.com/Manish1902/MyNewProject.git'
-                 checkout scm
+                // git branch: "${BRANCH_NAME}", url: "${GIT_URL}"
+                checkout scm
             }
         }
 
