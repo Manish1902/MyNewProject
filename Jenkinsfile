@@ -31,6 +31,13 @@ pipeline {
             }
         }
 
+        stage('Install Web Dependencies') {
+            steps {
+                // Install required dependencies for web support
+                bat 'npx expo install react-native-web react-dom @expo/metro-runtime'
+            }
+        }
+
         stage('Build') {
             steps {
                 // Run build command for web (you can customize for Android or iOS if needed)
